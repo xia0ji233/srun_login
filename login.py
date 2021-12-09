@@ -40,8 +40,6 @@ def get_info():
 def init_getip():
 	global ip
 	init_res=requests.get(init_url,headers=header)
-	print("初始化获取ip")
-	#print(init_res.text)
 	ip=re.search('ip     : "(.*?)"',init_res.text).group(1)
 	print("ip:",ip)
 def get_token():
@@ -55,15 +53,14 @@ def get_token():
 	}
 	get_challenge_res=requests.get(get_challenge_api,params=get_challenge_params,headers=header)
 	token=re.search('"challenge":"(.*?)"',get_challenge_res.text).group(1)
-	print(get_challenge_res.text)
-	print("token为:"+token)
+	print("token:"+token)
 def do_complex_work():
 	global i,hmd5,chksum
 	i=get_info()
 	i="{SRBX1}"+get_base64(get_xencode(i,token))
 	hmd5=get_md5(password,token)
 	chksum=get_sha1(get_chksum())
-	print("所有加密工作已完成")
+	print("encode done!")
 def login():
 	srun_portal_params={
 	'callback': 'jQuery11240645308969735664_'+str(int(time.time()*1000)),
@@ -81,7 +78,7 @@ def login():
 	'double_stack':0,
 	'_':int(time.time()*1000)
 	}
-	print(srun_portal_params)
+	#print(srun_portal_params)
 	srun_portal_res=requests.get(srun_portal_api,params=srun_portal_params,headers=header)
 
 	if 'ok' in srun_portal_res.text:
@@ -95,8 +92,8 @@ def login():
 
 if __name__ == '__main__':
 	global username,password
-	username="00184110@chinanet"
-	password="220072"
+	username=""#一卡通号加上@运营商地址
+	password=""#密码
 	init_getip()
 	get_token()
 	do_complex_work()
