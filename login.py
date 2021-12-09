@@ -95,8 +95,8 @@ def login():
 
 if __name__ == '__main__':
 	global username,password
-	username="00184110@chinanet"
-	password="220072"
+	username=""
+	password=""
 	init_getip()
 	get_token()
 	do_complex_work()
