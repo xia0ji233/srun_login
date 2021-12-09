@@ -92,8 +92,13 @@ def login():
 
 if __name__ == '__main__':
 	global username,password
+<<<<<<< HEAD
 	username=""#一卡通号加上@运营商地址
 	password=""#密码
+=======
+	username=""
+	password=""
+>>>>>>> origin/main
 	init_getip()
 	get_token()
 	do_complex_work()
